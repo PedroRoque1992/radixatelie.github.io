@@ -1,6 +1,6 @@
 {
 // WhatsApp: preencha o número (55 + DDD + número, só dígitos) para ativar todos os botões do site.
-const WHATSAPP = '';            // exemplo: '5548999999999'
+const WHATSAPP = '5548991460228';
 const MENSAGEM = 'Olá! Quero um orçamento de peças em impressão 3D.';
 if (WHATSAPP) {
   const link = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(MENSAGEM);
