@@ -201,13 +201,14 @@ trecho('secao', '''    <h2>Preço e entrega</h2>
       <div><h3>Preço por quantidade</h3><p>O valor por peça diminui conforme o tamanho do pedido. Mande quantas peças você precisa e respondemos com o orçamento.</p></div>
       <div><h3>Entrega em Florianópolis</h3><p>Retirada ou entrega combinadas no orçamento.</p></div>
       <div><h3>Envio para todo o Brasil</h3><p>Pelos Correios. O frete depende do peso e do CEP de destino, então calculamos antes de você fechar o pedido e ele já vem no orçamento.</p></div>
-      <div><h3>Prazo</h3><p>Depende da quantidade e do desenho. É combinado no orçamento, antes de você fechar.</p></div>
+      <div><h3>Prazo</h3><p>Entregas a partir de 1 dia útil.</p><p class="obs">O prazo varia conforme o tamanho e a quantidade de peças, a complexidade do desenho e o local de entrega. Ele é confirmado no orçamento, antes de você fechar.</p></div>
     </div>''', 'entrega'),
 trecho('secao', '''    <h2>Dúvidas frequentes</h2>
     <div class="faq">
       <details><summary>Preciso ter o desenho pronto?</summary><p>Não. Pode mandar o seu logo, uma foto ou só a ideia. A gente desenha a peça e envia a simulação em 3D para você aprovar.</p></details>
       <details><summary>Dá para ver a peça antes de fazer o pedido todo?</summary><p>Sim. Você aprova a simulação em 3D antes de qualquer impressão, e em pedidos maiores imprimimos uma amostra.</p></details>
       <details><summary>Qual a quantidade mínima?</summary><p>A partir de 1 peça. O preço por unidade cai conforme a quantidade, por isso vale contar quantas você precisa no pedido de orçamento.</p></details>
+      <details><summary>Qual o prazo?</summary><p>Entregas a partir de 1 dia útil. O prazo varia conforme o tamanho e a quantidade de peças, a complexidade do desenho e o local de entrega, e é confirmado no orçamento.</p></details>
       <details><summary>Cada peça pode ter um nome ou número diferente?</summary><p>Pode. Na impressão 3D cada unidade pode ser diferente, no mesmo lote.</p></details>
       <details><summary>Vocês enviam para outras cidades?</summary><p>Sim, para todo o Brasil pelos Correios. O frete é calculado pelo peso e pelo CEP e vem junto no orçamento.</p></details>
       <details><summary>A peça aguenta uso no dia a dia?</summary><p>Sim. O PETG é firme e resistente a quedas e ao uso no chaveiro ou na bolsa. Só evite deixar a peça em lugares muito quentes, como o painel do carro ao sol.</p></details>
@@ -218,13 +219,16 @@ trecho('secao', '''    <h2>Dúvidas frequentes</h2>
 marca = '\n'.join([
 trecho('cabeca-pagina', '''    <h1>A marca</h1>
     <p>Toda árvore começa embaixo da terra, muito antes da primeira folha.</p>''', ponto=False),
-trecho('secao', '''    <div class="carta">
+trecho('secao', '''    <div class="carta-bloco">
+    <figure class="retrato"><img src="img/pedro.webp" width="560" height="700" alt="Pedro, fundador da Radix Ateliê, sorrindo num jardim."></figure>
+    <div class="carta">
       <p class="abre">A Radix nasceu de uma vontade antiga: criar raiz.</p>
       <p>Foram quase vinte anos na área comercial. Vendi de tudo, de tecnologia a roupa esportiva, de consultorias a projetos de estrutura, sempre com a mão na massa. Dediquei boa parte da vida a fazer outras empresas crescerem. Chegou a hora de construir algo meu: algo que faça sentido, que faça parte de mim e que não fique só na memória.</p>
       <p>Em todos esses anos, sempre me apresentei como alguém que resolve problemas. E um problema eu vi de perto, muitas e muitas vezes: o atendimento. É ali, num momento sensível e muitas vezes delicado, que o cliente decide se fica ou se vai embora. E é ali que tanta empresa falha, às vezes por muito pouco.</p>
       <p>A Radix existe para esse pouco. Uma peça feita para o seu cliente não é só um brinde nem só um mimo. É um gesto. É o jeito de dizer, sem precisar de palavras, que você se importa com quem escolheu você.</p>
       <p>Abrace o seu cliente. Deixe que ele se sinta abraçado.</p>
       <p class="assina">Pedro<span>Fundador da Radix Ateliê</span></p>
+    </div>
     </div>''', 'historia', ponto=False),
 trecho('secao', '''    <h2>O que a logo conta</h2>
     <div class="historia">

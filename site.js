@@ -9,6 +9,15 @@ if (WHATSAPP) {
   document.querySelectorAll('[data-whatsapp-texto]').forEach(el => el.textContent = n);
 }
 
+// Contador de visitas (GoatCounter, gratuito e sem cookies). Crie a conta em goatcounter.com e coloque o código aqui.
+const CONTADOR = '';            // exemplo: 'radixatelie'  (vira radixatelie.goatcounter.com)
+if (CONTADOR) {
+  const sc = document.createElement('script');
+  sc.async = true; sc.src = 'https://gc.zgo.at/count.js';
+  sc.dataset.goatcounter = 'https://' + CONTADOR + '.goatcounter.com/count';
+  document.head.appendChild(sc);
+}
+
 // Menu no celular
 const menu = document.querySelector('.menu'), nav = document.querySelector('.topo nav');
 if (menu) menu.addEventListener('click', () => {

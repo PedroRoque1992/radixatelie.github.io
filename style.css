@@ -197,3 +197,11 @@ footer img{width:44px;margin:0 auto 14px;opacity:.9}
 button.botao{background:transparent;border:0;cursor:pointer}
 button.botao.contorno{border:1px solid var(--ouro-fundo);color:var(--marfim)}
 .destaques img{height:210px;width:100%;object-fit:contain}
+.carta-bloco{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:clamp(24px,5vw,64px);align-items:start}
+.carta-bloco .retrato{order:2;position:sticky;top:24px}
+.retrato img{width:100%;border-radius:8px;border:1px solid var(--ouro-fundo);filter:saturate(.9)}
+.obs{font-size:.85rem;color:var(--texto-fraco);margin-top:.6em}
+@media (max-width:820px){
+  .carta-bloco{grid-template-columns:1fr}
+  .carta-bloco .retrato{order:0;position:static;max-width:220px}
+}
