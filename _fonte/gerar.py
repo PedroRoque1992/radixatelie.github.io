@@ -245,7 +245,7 @@ trecho('secao', '''    <h2>O que a logo conta</h2>
         <h3>O nome</h3>
         <p>Radix quer dizer raiz, em latim. É de onde tudo nasce e o que mantém tudo de pé, mesmo quando ninguém vê. Ateliê porque aqui nada sai de uma linha de produção: cada peça é pensada, desenhada e feita para alguém.</p>
         <h3>O símbolo</h3>
-        <p>O desenho nasce da Yggdrasil, a árvore sagrada da mitologia nórdica, que une todos os mundos pelas raízes e pelos galhos. Nela, tudo está ligado. E ela encontra a outra forma que gera vida: a anatomia feminina. As duas se ramificam do mesmo jeito, e não por acaso: no colo do útero existe uma estrutura que a medicina chama de <i>arbor vitae</i>, a "árvore da vida".</p>
+        <p>O desenho nasce da Yggdrasil, a árvore sagrada da mitologia nórdica, que une todos os mundos pelas raízes e pelos galhos. Nela, tudo está ligado. E dela cria-se outra forma que gera vida: a anatomia do órgão reprodutor feminino. As duas se ramificam do mesmo jeito, e não por acaso: no colo do útero existe uma estrutura que a medicina chama de <i>arbor vitae</i>, a "árvore da vida".</p>
         <h3>O caminho de cada peça</h3>
         <p>Na logo, a copa cresce, as fibras se unem e passam pelo bico de uma impressora 3D. O fio que sai dele escreve o nome, e o nome cria raízes. É o caminho de tudo o que fazemos: uma ideia que ganha forma, vira matéria e permanece.</p>
       </div>

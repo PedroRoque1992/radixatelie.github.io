@@ -10,7 +10,7 @@ if (WHATSAPP) {
 }
 
 // Contador de visitas (GoatCounter, gratuito e sem cookies). Crie a conta em goatcounter.com e coloque o código aqui.
-const CONTADOR = '';            // exemplo: 'radixatelie'  (vira radixatelie.goatcounter.com)
+const CONTADOR = 'radixatelie';   // radixatelie.goatcounter.com
 if (CONTADOR) {
   const sc = document.createElement('script');
   sc.async = true; sc.src = 'https://gc.zgo.at/count.js';
