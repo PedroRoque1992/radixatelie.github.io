@@ -22,12 +22,12 @@ def trecho(classe, conteudo, id_=None, ponto=True):
 def pagina(arquivo, titulo, descricao, corpo, extra_head='', extra_fim=''):
     nav = '\n    '.join(f'<a href="{a}"' + (' aria-current="page"' if a == arquivo else '') + f'>{n}</a>' for a, n in PAGINAS)
     contato = trecho('faixa-contato', '''    <h2>Vamos criar a sua peça</h2>
-    <p>Conte o que você precisa. Respondemos com ideias, cores e orçamento.</p>
+    <p>Conte o que você precisa!<br>Respondemos com ideias, cores, projetos e exemplos.<br>Faça seu orçamento, sem compromisso.</p>
     <div class="acoes"><a class="botao cheio" data-whatsapp href="#contato">Chamar no WhatsApp</a></div>
     <dl>
       <dt>WhatsApp</dt><dd data-whatsapp-texto>[NÚMERO A DEFINIR]</dd>
       <dt>Instagram</dt><dd><a href="https://www.instagram.com/radix.atelie/" target="_blank" rel="noopener">@radix.atelie</a></dd>
-      <dt>Ateliê</dt><dd>Florianópolis, SC. Enviamos para todo o Brasil.</dd>
+      <dt>Ateliê</dt><dd>Florianópolis, SC.<br>Enviamos para todo o Brasil.</dd>
     </dl>''', 'contato')
     return f'''<!DOCTYPE html>
 <html lang="pt-BR">
