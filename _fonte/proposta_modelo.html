@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sua peça | Radix Ateliê</title>
+<meta property="og:title" content="Sua peça em 3D | Radix Ateliê">
+<meta property="og:description" content="Gire a peça, escolha as cores e me conte o que funciona pra você.">
+<meta property="og:image" content="../../img/compartilhar.jpg">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="../../img/icone-32.png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ouro:#D3AE41;--luz:#F3DA8A;--prof:#6F5312;--marfim:#F7F3EA;--cinza:#A9A397}
+*{box-sizing:border-box;margin:0}
+body{background:#000;color:var(--marfim);font:400 16px/1.55 Montserrat,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:980px;margin:0 auto;padding:28px 20px 56px}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px}
+header img{height:56px;width:auto}
+header a{color:var(--cinza);font-size:13px;text-decoration:none}
+h1{font:600 clamp(30px,6vw,46px)/1.1 Cinzel,serif;color:var(--ouro);margin-bottom:10px}
+.intro{color:var(--cinza);max-width:56ch;margin-bottom:26px}
+.grade{display:grid;gap:28px}
+@media(min-width:860px){.grade{grid-template-columns:1.25fr 1fr;align-items:start}}
+.palco{position:relative;aspect-ratio:1/1;border:1px solid var(--prof);background:radial-gradient(circle at 50% 42%,#1d170b 0,#000 70%);touch-action:none;cursor:grab}
+.palco:active{cursor:grabbing}
+.palco canvas{width:100%;height:100%;display:block}
+.dica{position:absolute;left:0;right:0;bottom:12px;text-align:center;font-size:12px;color:var(--cinza);pointer-events:none}
+.vistas{display:flex;gap:8px;margin-top:10px}
+button{font:inherit;color:inherit;background:transparent;cursor:pointer}
+.vistas button{flex:1;border:1px solid var(--prof);padding:9px 0;font-size:14px}
+.vistas button:hover,.vistas button:focus-visible{border-color:var(--ouro)}
+:focus-visible{outline:2px solid var(--luz);outline-offset:2px}
+dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:15px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--prof)}
+dt{color:var(--cinza)}
+h2{font:600 15px/1.3 Montserrat,sans-serif;margin:20px 0 10px}
+h2 span{color:var(--luz);font-weight:400}
+.cores{display:flex;flex-wrap:wrap;gap:8px}
+.cores button{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.18);position:relative}
+.cores button[aria-pressed=true]{box-shadow:0 0 0 2px #000,0 0 0 4px var(--ouro)}
+.cores button.trans::after{content:"";position:absolute;inset:7px;border-radius:50%;border:1px dashed rgba(0,0,0,.35)}
+label.unica{display:flex;gap:10px;align-items:center;margin-top:18px;font-size:15px;cursor:pointer}
+label.unica input{width:18px;height:18px;accent-color:var(--ouro)}
+textarea{width:100%;margin-top:22px;min-height:84px;background:#0d0d0d;color:var(--marfim);border:1px solid var(--prof);padding:12px;font:inherit;font-size:15px;resize:vertical}
+textarea::placeholder{color:#777}
+.enviar{display:block;width:100%;margin-top:14px;padding:15px;background:var(--ouro);color:#000;font-weight:600;border:0;font-size:16px}
+.enviar:hover{background:var(--luz)}
+.nota{font-size:13px;color:var(--cinza);margin-top:14px}
+.obs{font-size:14px;color:var(--marfim);background:#0d0d0d;border-left:2px solid var(--ouro);padding:10px 14px;margin-bottom:22px}
+.expirou{position:fixed;inset:0;background:#000;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;gap:14px;z-index:9}
+.expirou.on{display:flex}
+.expirou img{height:90px}
+.expirou p{color:var(--cinza);max-width:40ch}
+footer{margin-top:44px;text-align:center;font-size:13px;color:var(--cinza)}
+footer a{color:var(--ouro)}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="../../img/logo-radix-atelie.webp" alt="Radix Ateliê">
+    <a href="../../index.html">radix ateliê</a>
+  </header>
+
+  <h1 id="titulo">Sua peça, do seu jeito.</h1>
+  <p class="intro">Gire a peça, troque as cores e veja o que funciona pra você. Quando decidir, é só me mandar a escolha pelo WhatsApp.</p>
+
+  <div class="grade">
+    <div>
+      <div class="palco" id="palco"><span class="dica">Arraste para girar. Use dois dedos ou a roda do mouse para aproximar.</span></div>
+      <div class="vistas">
+        <button type="button" data-vista="frente">Frente</button>
+        <button type="button" data-vista="lado">Lado</button>
+        <button type="button" data-vista="verso">Verso</button>
+      </div>
+    </div>
+
+    <div>
+      <dl>
+        <dt>Peça</dt><dd id="f-peca"></dd>
+        <dt>Tamanho</dt><dd id="f-tamanho"></dd>
+        <dt>Material</dt><dd id="f-material"></dd>
+        <dt>Válido até</dt><dd id="f-validade"></dd>
+      </dl>
+      <p class="obs" id="f-obs" hidden></p>
+      <div id="escolhas"></div>
+      <label class="unica" id="unica-rotulo" hidden><input type="checkbox" id="unica"> Peça inteira de uma cor só</label>
+      <textarea id="nota" placeholder="Quer comentar algo? Quantidade, tamanho, ideia nova…"></textarea>
+      <button type="button" class="enviar" id="enviar">Enviar minha escolha pelo WhatsApp</button>
+      <p class="nota">As cores na tela são uma aproximação. O tom real do filamento pode variar um pouco.</p>
+    </div>
+  </div>
+
+  <footer>Radix Ateliê. Florianópolis, SC. Enviamos para todo o Brasil.<br><a href="https://instagram.com/radix.atelie">@radix.atelie</a></footer>
+</main>
+
+<div class="expirou" id="expirou">
+  <img src="../../img/logo-radix-atelie.webp" alt="Radix Ateliê">
+  <h1>Este link expirou.</h1>
+  <p>As propostas ficam no ar por alguns dias. Me chama que eu te mando uma nova, atualizada.</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/*CONFIG*/
+const WHATSAPP = '';   // número com DDI e DDD, só dígitos (ex.: 5548999999999). Vazio: a pessoa escolhe o contato.
+
+const $ = id => document.getElementById(id);
+const hoje = new Date(); hoje.setHours(0,0,0,0);
+const fim = new Date(CFG.validade + 'T23:59:59');
+if (hoje > fim) $('expirou').classList.add('on');
+
+if (CFG.cliente) $('titulo').textContent = CFG.cliente.split(' ')[0] + ', essa é a sua peça.';
+$('f-peca').textContent = CFG.peca;
+$('f-tamanho').textContent = CFG.tamanho;
+$('f-material').textContent = CFG.material;
+$('f-validade').textContent = CFG.validade.split('-').reverse().join('/');
+if (CFG.obs) { $('f-obs').textContent = CFG.obs; $('f-obs').hidden = false; }
+
+const corHex = Object.fromEntries(CFG.cores);
+let escolha = [], unica = false;
+
+fetch('modelo.json').then(r => r.json()).then(dados => {
+  const T = THREE, calmo = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const linear = hex => new T.Color(hex).convertSRGBToLinear();
+  const palco = $('palco');
+  const renderer = new T.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.outputEncoding = T.sRGBEncoding;
+  palco.prepend(renderer.domElement);
+
+  const cena = new T.Scene();
+  const camera = new T.PerspectiveCamera(30, 1, 1, 3000);
+  cena.add(new T.HemisphereLight(0xfff4dd, 0x201a10, 0.85));
+  const sol = new T.DirectionalLight(0xffffff, 0.9); sol.position.set(-40, 60, 90); cena.add(sol);
+  const contra = new T.DirectionalLight(0xD3AE41, 0.5); contra.position.set(50, -30, -60); cena.add(contra);
+
+  const peca = new T.Group(), malhas = [];
+  dados.partes.forEach(p => {
+    const g = new T.BufferGeometry();
+    g.setAttribute('position', new T.Float32BufferAttribute(p.p, 3));
+    g.computeVertexNormals();
+    const mat = new T.MeshStandardMaterial({ color: linear(corHex[p.cor]), roughness: 0.45, metalness: 0.02, side: T.DoubleSide });
+    const mesh = new T.Mesh(g, mat); peca.add(mesh); malhas.push(mesh);
+  });
+  const caixa = new T.Box3().setFromObject(peca), centro = caixa.getCenter(new T.Vector3()), raio = caixa.getSize(new T.Vector3()).length() / 2;
+  peca.position.sub(centro);
+  const giro = new T.Group(); giro.add(peca); cena.add(giro);
+  let dist = raio * 3.6; const distMin = raio * 1.6, distMax = raio * 6;
+
+  // painel de cores
+  const painel = $('escolhas');
+  dados.partes.slice().reverse().forEach((p, iRev) => {
+    const i = dados.partes.length - 1 - iRev;
+    escolha[i] = p.cor;
+    const bloco = document.createElement('div'); bloco.dataset.parte = i;
+    bloco.innerHTML = `<h2>${dados.partes.length > 1 ? p.nome : 'Cor'}: <span>${p.cor}</span></h2><div class="cores" role="group" aria-label="Cor de ${p.nome}"></div>`;
+    const lista = bloco.querySelector('.cores');
+    CFG.cores.forEach(([nome, hex]) => {
+      const b = document.createElement('button'); b.type = 'button'; b.title = nome; b.setAttribute('aria-label', nome);
+      b.style.background = hex; if (/Transl/.test(nome)) b.classList.add('trans');
+      b.setAttribute('aria-pressed', nome === p.cor);
+      b.onclick = () => { define(i, nome); };
+      lista.append(b);
+    });
+    painel.append(bloco);
+  });
+  if (dados.partes.length > 1) $('unica-rotulo').hidden = false;
+  const topo = dados.partes.length - 1;
+  function define(i, nome) {
+    if (unica) { escolha = escolha.map(() => nome); } else escolha[i] = nome;
+    pinta();
+  }
+  function pinta() {
+    malhas.forEach((m, i) => m.material.color.copy(linear(corHex[escolha[i]])));
+    painel.querySelectorAll('[data-parte]').forEach(bl => {
+      const i = +bl.dataset.parte;
+      bl.querySelector('h2 span').textContent = escolha[i];
+      bl.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.title === escolha[i]));
+      bl.hidden = unica && i !== topo;
+    });
+    painel.querySelector(`[data-parte="${topo}"] h2`).firstChild.textContent = unica ? 'Cor: ' : (dados.partes.length > 1 ? dados.partes[topo].nome + ': ' : 'Cor: ');
+  }
+  $('unica').onchange = e => { unica = e.target.checked; if (unica) escolha = escolha.map(() => escolha[topo]); pinta(); };
+
+  // girar, aproximar, vistas
+  let alvoY = 0.5, alvoX = -0.35, arrastando = false, px = 0, py = 0, parado = 0;
+  const toques = new Map(); let pinca0 = 0, dist0 = dist;
+  palco.addEventListener('pointerdown', e => {
+    toques.set(e.pointerId, [e.clientX, e.clientY]); palco.setPointerCapture(e.pointerId);
+    if (toques.size === 1) { arrastando = true; px = e.clientX; py = e.clientY; }
+    if (toques.size === 2) { const [a, b] = [...toques.values()]; pinca0 = Math.hypot(a[0]-b[0], a[1]-b[1]); dist0 = dist; arrastando = false; }
+  });
+  palco.addEventListener('pointermove', e => {
+    if (!toques.has(e.pointerId)) return;
+    toques.set(e.pointerId, [e.clientX, e.clientY]); parado = 0;
+    if (toques.size === 2) { const [a, b] = [...toques.values()]; dist = Math.max(distMin, Math.min(distMax, dist0 * pinca0 / Math.max(1, Math.hypot(a[0]-b[0], a[1]-b[1])))); return; }
+    if (!arrastando) return;
+    alvoY += (e.clientX - px) * 0.012; alvoX += (e.clientY - py) * 0.008;
+    alvoX = Math.max(-1.5, Math.min(1.5, alvoX)); px = e.clientX; py = e.clientY;
+  });
+  const solta = e => { toques.delete(e.pointerId); arrastando = false; };
+  palco.addEventListener('pointerup', solta); palco.addEventListener('pointercancel', solta);
+  palco.addEventListener('wheel', e => { e.preventDefault(); dist = Math.max(distMin, Math.min(distMax, dist * (1 + e.deltaY * 0.001))); parado = 0; }, { passive: false });
+  document.querySelectorAll('[data-vista]').forEach(b => b.onclick = () => {
+    const volta = 2 * Math.PI, v = b.dataset.vista;
+    const base = v === 'verso' ? Math.PI : v === 'lado' ? Math.PI / 2 : 0;
+    alvoY = base + Math.round((alvoY - base) / volta) * volta;
+    alvoX = v === 'lado' ? 0 : -0.15; parado = -400;
+  });
+
+  function tamanho() {
+    const w = palco.clientWidth, h = palco.clientHeight;
+    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+  }
+  new ResizeObserver(tamanho).observe(palco); tamanho();
+  (function quadro() {
+    parado++;
+    if (!arrastando && !calmo && parado > 150) alvoY += 0.005;
+    giro.rotation.y += (alvoY - giro.rotation.y) * 0.12;
+    giro.rotation.x += (alvoX - giro.rotation.x) * 0.12;
+    camera.position.set(0, 0, camera.position.z + (dist - camera.position.z) * 0.15 || dist);
+    renderer.render(cena, camera);
+    requestAnimationFrame(quadro);
+  })();
+
+  $('enviar').onclick = () => {
+    const linhas = unica || dados.partes.length === 1
+      ? [`Cor: ${escolha[topo]}`]
+      : dados.partes.map((p, i) => `${p.nome}: ${escolha[i]}`).reverse();
+    const nota = $('nota').value.trim();
+    const txt = `Oi, Pedro! Escolhi assim a peça "${CFG.peca}" (proposta ${CFG.codigo}):\n` + linhas.join('\n') + (nota ? `\n\nObs.: ${nota}` : '');
+    location.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(txt);
+  };
+});
+</script>
+</body>
+</html>
