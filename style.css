@@ -205,3 +205,18 @@ button.botao.contorno{border:1px solid var(--ouro-fundo);color:var(--marfim)}
   .carta-bloco{grid-template-columns:1fr}
   .carta-bloco .retrato{order:0;position:static;max-width:220px}
 }
+
+/* Vitrine 3D: palco com moldura e ficha da peça */
+.palco-moldura{border:1px solid var(--ouro-fundo);border-radius:10px;padding:10px 10px 0;background:radial-gradient(70% 60% at 50% 45%,rgba(211,174,65,.12),rgba(0,0,0,0) 72%)}
+.palco-moldura .palco{background:none;max-height:520px}
+.palco-moldura figcaption{text-align:center;font-size:.85rem;color:var(--texto-fraco);padding:10px 0 12px;border-top:1px solid rgba(111,83,18,.5)}
+.ficha h3{font-size:1.45rem;color:var(--ouro);margin-bottom:16px}
+.ficha dl{display:grid;grid-template-columns:auto 1fr;gap:8px 22px;font-size:.98rem;margin-bottom:26px}
+.ficha dt{color:var(--texto-fraco)}
+.ficha dd{color:var(--marfim)}
+.lado{display:inline-flex;border:1px solid var(--ouro-fundo);border-radius:999px;padding:4px;margin-bottom:26px}
+.lado button{background:none;border:0;color:var(--texto-fraco);font:500 .92rem var(--sans);padding:10px 22px;border-radius:999px;cursor:pointer}
+.lado button[aria-pressed="true"]{background:var(--ouro);color:var(--preto)}
+.rotulo{font-size:.95rem;color:var(--texto-fraco)}
+.rotulo .nome-cor{color:var(--marfim);margin-left:8px}
+.ficha .escolha{margin-top:12px}

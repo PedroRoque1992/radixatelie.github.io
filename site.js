@@ -95,12 +95,20 @@ if (palco && window.THREE) {
     const solta = () => { arrastando = false; };
     palco.addEventListener('pointerup', solta); palco.addEventListener('pointercancel', solta);
 
-    document.getElementById('ver-verso')?.addEventListener('click', () => { alvoY += Math.PI; parado = 0; });
+    // Frente e verso: gira até o lado escolhido pelo caminho mais curto
+    const btFrente = document.getElementById('ver-frente'), btVerso = document.getElementById('ver-verso');
+    const lado = verso => {
+      const volta = 2 * Math.PI, base = verso ? Math.PI : 0;
+      alvoY = base + Math.round((alvoY - base) / volta) * volta; alvoX = -0.15; parado = -400;
+      btFrente?.setAttribute('aria-pressed', !verso); btVerso?.setAttribute('aria-pressed', verso);
+    };
+    btFrente?.addEventListener('click', () => lado(false));
+    btVerso?.addEventListener('click', () => lado(true));
 
     document.querySelectorAll('.escolha button').forEach(b => b.addEventListener('click', () => {
       document.querySelectorAll('.escolha button').forEach(x => x.setAttribute('aria-pressed', x === b));
       corpo.material.color.copy(linear(b.dataset.cor));
-      const nome = document.querySelector('.nome-cor'); if (nome) nome.textContent = 'Cor: ' + b.title;
+      const nome = document.querySelector('.nome-cor'); if (nome) nome.textContent = b.title;
     }));
 
     function tamanho() {

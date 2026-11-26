@@ -95,23 +95,32 @@ trecho('abertura', '''    <div>
       <li><strong>16 cores</strong>Sólidas, translúcidas e especiais</li>
       <li><strong>Até 25 cm</strong>Do chaveiro à peça de decoração</li>
     </ul>''', ponto=False),
-trecho('secao', f'''    <h2>Gire a peça</h2>
-    <p>Este é um chaveiro de mandala com o número encaixado no verso, em outra cor. Arraste para girar e troque a cor para ver como fica.</p>
+trecho('secao', f'''    <h2>Veja antes de imprimir</h2>
+    <p>Todo pedido começa assim: você recebe a peça em 3D, vê de todos os ângulos e escolhe a cor antes de qualquer impressão. Experimente com um dos nossos chaveiros.</p>
     <div class="vitrine">
-      <div class="palco" id="palco" aria-label="Chaveiro em 3D. Arraste para girar.">
-        <img src="img/mandala.webp" width="900" height="956" alt="Chaveiro em forma de mandala laranja com argola de metal.">
-        <span class="dica">Arraste para girar</span>
-      </div>
-      <div>
+      <figure class="palco-moldura">
+        <div class="palco" id="palco" aria-label="Chaveiro em 3D. Arraste para ver de outros ângulos.">
+          <img src="img/mandala.webp" width="900" height="956" alt="Chaveiro em forma de mandala laranja com argola de metal.">
+        </div>
+        <figcaption>Arraste para ver de outros ângulos</figcaption>
+      </figure>
+      <div class="ficha">
         <h3>Chaveiro de armário</h3>
-        <p>Mandala de 4 cm vazada, com o número preto nivelado no verso. Cada unidade sai com um número diferente, no mesmo lote.</p>
+        <dl>
+          <dt>Tamanho</dt><dd>4 cm de diâmetro</dd>
+          <dt>Material</dt><dd>PETG</dd>
+          <dt>Verso</dt><dd>Número em outra cor, nivelado com a peça</dd>
+        </dl>
+        <div class="lado" role="group" aria-label="Lado da peça">
+          <button type="button" id="ver-frente" aria-pressed="true">Frente</button>
+          <button type="button" id="ver-verso" aria-pressed="false">Verso</button>
+        </div>
+        <p class="rotulo">Cor <span class="nome-cor">Laranja</span></p>
         <div class="escolha" role="group" aria-label="Cor do chaveiro">
 {escolha}
         </div>
-        <p class="nome-cor">Cor: Laranja</p>
-        <div class="botoes-palco" style="margin-top:18px"><button class="botao contorno pequeno" type="button" id="ver-verso">Ver o verso</button></div>
       </div>
-    </div>''', 'gire'),
+    </div>''', 'veja'),
 trecho('secao', '''    <h2>O que fazemos</h2>
     <div class="destaques">
       <a href="pecas.html#chaveiros"><img src="img/mandala.webp" width="900" height="956" loading="lazy" alt=""><h3>Chaveiros personalizados</h3><p>Com o seu logo, o nome da empresa ou um número para cada armário.</p></a>
