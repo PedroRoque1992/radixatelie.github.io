@@ -44,6 +44,7 @@ h2 span{color:var(--luz);font-weight:400}
 .cores button.trans::after{content:"";position:absolute;inset:7px;border-radius:50%;border:1px dashed rgba(0,0,0,.35)}
 label.unica{display:flex;gap:10px;align-items:center;margin-top:18px;font-size:15px;cursor:pointer}
 label.unica input{width:18px;height:18px;accent-color:var(--ouro)}
+label.unica[hidden]{display:none}
 textarea{width:100%;margin-top:22px;min-height:84px;background:#0d0d0d;color:var(--marfim);border:1px solid var(--prof);padding:12px;font:inherit;font-size:15px;resize:vertical}
 textarea::placeholder{color:#777}
 .enviar{display:block;width:100%;margin-top:14px;padding:15px;background:var(--ouro);color:#000;font-weight:600;border:0;font-size:16px}
@@ -114,7 +115,7 @@ const hoje = new Date(); hoje.setHours(0,0,0,0);
 const fim = new Date(CFG.validade + 'T23:59:59');
 if (hoje > fim) $('expirou').classList.add('on');
 
-if (CFG.cliente) $('titulo').textContent = CFG.cliente.split(' ')[0] + ', essa é a sua peça.';
+if (CFG.cliente) $('titulo').textContent = CFG.cliente + ', essa é a sua peça.';
 $('f-peca').textContent = CFG.peca;
 $('f-tamanho').textContent = CFG.tamanho;
 $('f-material').textContent = CFG.material;
@@ -174,7 +175,7 @@ fetch('modelo.json').then(r => r.json()).then(dados => {
     });
     painel.append(bloco);
   });
-  if (dados.partes.length > 1) $('unica-rotulo').hidden = false;
+  if (dados.partes.length > 1 && !CFG.semUnica) $('unica-rotulo').hidden = false;
   const topo = dados.partes.length - 1;
   function define(i, nome) {
     if (unica) { escolha = escolha.map(() => nome); } else escolha[i] = nome;

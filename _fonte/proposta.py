@@ -32,6 +32,7 @@ ap.add_argument('--codigo', default='')
 ap.add_argument('--decimar', type=int, default=0, help='reduz a malha para N triângulos (modelos pesados)')
 ap.add_argument('--vista', default='0.5,-0.35', help='giro inicial: y,x em radianos')
 ap.add_argument('--rotulos', default='Frente,Lado,Verso')
+ap.add_argument('--sem-unica', action='store_true', help='esconde a opção "peça inteira de uma cor só"')
 ap.add_argument('--volume', action='store_true', help='peça de volume (bicho, boneco): mostra em pé, com o topo pra cima')
 a = ap.parse_args()
 assert len(a.stl) > 1 or len(a.partes) == len(a.corte) + 1, 'precisa de uma parte a mais que o número de cortes'
@@ -76,7 +77,7 @@ with open(os.path.join(pasta, 'modelo.json'), 'w') as f:
 cfg = {
     'codigo': codigo, 'peca': a.peca, 'cliente': a.cliente, 'validade': validade, 'material': a.material, 'obs': a.obs,
     'tamanho': ' × '.join(f'{v:.1f}'.replace('.', ',').replace(',0', '') for v in ext) + ' mm',
-    'cores': CORES, 'vista': [float(x) for x in a.vista.split(',')], 'rotulos': a.rotulos.split(','), 'volume': a.volume,
+    'cores': CORES, 'vista': [float(x) for x in a.vista.split(',')], 'rotulos': a.rotulos.split(','), 'volume': a.volume, 'semUnica': a.sem_unica,
 }
 modelo = open(os.path.join(RAIZ, '_fonte', 'proposta_modelo.html'), encoding='utf-8').read()
 html = modelo.replace('/*CONFIG*/', 'const CFG = ' + json.dumps(cfg, ensure_ascii=False) + ';')
