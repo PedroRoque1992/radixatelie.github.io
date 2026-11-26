@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Radix Ateliê | Impressão 3D personalizada em Florianópolis</title>
-<meta name="description" content="Chaveiros, mimos e peças personalizadas em impressão 3D para clínicas de estética e salões. Modelagem própria em Florianópolis.">
+<meta name="description" content="Chaveiros, mimos, brindes e peças personalizadas em impressão 3D para empresas e marcas. Desenho próprio, produção em Florianópolis.">
 <meta property="og:title" content="Radix Ateliê | Impressão 3D personalizada">
-<meta property="og:description" content="Chaveiros, mimos e peças personalizadas em impressão 3D para clínicas de estética e salões.">
+<meta property="og:description" content="Chaveiros, mimos, brindes e peças personalizadas em impressão 3D para empresas e marcas.">
 <meta property="og:image" content="img/compartilhar.jpg">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#000000">
@@ -19,13 +19,13 @@
 /* Cores da marca (manual de identidade visual) */
 :root{
   --preto:#000000; --ouro:#D3AE41; --ouro-luz:#F3DA8A; --ouro-fundo:#6F5312; --marfim:#F7F3EA;
-  --texto:rgba(247,243,234,.82); --texto-fraco:rgba(247,243,234,.58);
+  --texto:rgba(247,243,234,.92); --texto-fraco:rgba(247,243,234,.74);
   --serif:'Cinzel',Georgia,serif; --sans:'Montserrat',system-ui,sans-serif;
   --fio:56px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--preto);color:var(--texto);font:300 1.0625rem/1.7 var(--sans);-webkit-font-smoothing:antialiased}
+body{background:var(--preto);color:var(--texto);font:400 1.0625rem/1.7 var(--sans);-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--ouro-luz);outline-offset:4px;border-radius:2px}
@@ -52,7 +52,7 @@ p+p{margin-top:1em}
 .topo nav a:hover{color:var(--ouro-luz)}
 
 /* Abertura */
-.abertura .conteudo{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:clamp(24px,4vw,64px);min-height:min(88vh,820px);padding-top:24px;padding-bottom:56px}
+.abertura .conteudo{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:clamp(24px,4vw,56px);padding-top:40px;padding-bottom:40px}
 .abertura h1{font-size:clamp(2.1rem,3.9vw,3.2rem);margin-bottom:.55em}
 .abertura .sub{font-size:1.15rem;color:var(--texto);max-width:28em}
 .acoes{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
@@ -61,13 +61,13 @@ p+p{margin-top:1em}
 .botao.cheio:hover{background:var(--ouro-luz)}
 .botao.contorno{border:1px solid var(--ouro-fundo);color:var(--marfim)}
 .botao.contorno:hover{border-color:var(--ouro)}
-.abertura .marca img{width:100%;max-width:520px;margin-left:auto}
+.abertura .marca img{width:100%;max-width:470px;margin-left:auto}
 
 /* O que fazemos: peças em fileira alternada, foto e texto */
-.secao .conteudo{padding-top:96px;padding-bottom:24px}
-.peca{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:center;margin-top:56px}
+.secao .conteudo{padding-top:80px;padding-bottom:8px}
+.peca{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:center;margin-top:32px}
 .peca:nth-of-type(even) .foto{order:2}
-.peca .foto img{width:100%;max-width:460px;margin:0 auto}
+.peca .foto img{width:100%;max-width:360px;margin:0 auto}
 .peca .detalhe{font-size:.95rem;color:var(--texto-fraco);margin-top:1em}
 
 /* Como funciona: é uma sequência, por isso numerada */
@@ -85,13 +85,57 @@ p+p{margin-top:1em}
 .pedido p{font-size:1.15rem}
 
 /* Contato e rodapé */
-.contato .conteudo{padding-top:96px;padding-bottom:110px}
+.contato .conteudo{padding-top:80px;padding-bottom:90px}
 .contato dl{display:grid;grid-template-columns:auto 1fr;gap:10px 28px;margin-top:28px;font-size:1rem}
 .contato dt{color:var(--texto-fraco)}
 .contato dd a{text-decoration:none;color:var(--marfim);border-bottom:1px solid var(--ouro-fundo)}
 .contato dd a:hover{border-color:var(--ouro)}
 footer{text-align:center;font-size:.85rem;color:var(--texto-fraco);padding:0 24px 40px}
 footer img{width:44px;margin:0 auto 14px;opacity:.9}
+
+
+/* Resumo logo abaixo da abertura */
+.fatos{grid-column:1/-1;list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--ouro-fundo);margin-top:8px}
+.fatos li{padding:22px 20px 4px 0;font-size:.92rem;color:var(--texto-fraco)}
+.fatos li+li{padding-left:20px;border-left:1px solid var(--ouro-fundo)}
+.fatos strong{display:block;font-family:var(--serif);font-weight:500;font-size:1.25rem;color:var(--ouro);margin-bottom:4px}
+
+/* Listas de usos e extras: termo em dourado, descrição embaixo, em duas colunas */
+.usos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 48px;margin-top:34px}
+.usos dt{font-family:var(--serif);font-size:1.08rem;color:var(--marfim);margin-bottom:4px}
+.usos dd{color:var(--texto-fraco);font-size:.98rem}
+.extras{margin-top:20px}
+.subtitulo{margin-top:56px;color:var(--ouro)}
+
+/* Vantagens da impressão 3D */
+.vantagens{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 48px;margin-top:30px}
+.vantagens>div{border-left:1px solid var(--ouro-fundo);padding-left:22px}
+.vantagens p{color:var(--texto-fraco);font-size:.98rem}
+
+/* A marca */
+.historia{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,5vw,64px);align-items:center;margin-top:20px}
+.historia h3{margin-top:26px;color:var(--ouro);font-size:1.12rem}
+.historia h3:first-child{margin-top:0}
+.simbolo img{width:100%;max-width:420px;margin:0 auto}
+.quem{margin-top:44px;padding-top:30px;border-top:1px solid var(--ouro-fundo)}
+.quem h3{color:var(--ouro);font-size:1.12rem}
+
+/* Dúvidas */
+.faq{margin-top:26px;max-width:760px}
+.faq details{border-bottom:1px solid var(--ouro-fundo)}
+.faq summary{cursor:pointer;list-style:none;padding:18px 40px 18px 0;position:relative;color:var(--marfim);font-weight:500}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:6px;top:12px;font-family:var(--serif);font-size:1.6rem;color:var(--ouro);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 20px;color:var(--texto-fraco)}
+
+@media (max-width:820px){
+  .fatos{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fatos li:nth-child(3){padding-left:0;border-left:0}
+  .usos,.vantagens,.historia{grid-template-columns:1fr}
+  .simbolo{order:-1}
+  .simbolo img{max-width:280px}
+}
 
 /* Um único movimento: o fio da abertura se desenha ao carregar a página */
 @media (prefers-reduced-motion:no-preference){
@@ -119,8 +163,10 @@ footer img{width:44px;margin:0 auto 14px;opacity:.9}
   <a class="nome" href="#">RADIX ATELIÊ</a>
   <nav aria-label="Seções">
     <a href="#pecas">Peças</a>
+    <a href="#para-quem">Para quem</a>
     <a href="#como-funciona">Como funciona</a>
-    <a href="#cores">Cores</a>
+    <a href="#a-marca">A marca</a>
+    <a href="#duvidas">Dúvidas</a>
     <a href="#contato">Contato</a>
   </nav>
 </header>
@@ -131,18 +177,24 @@ footer img{width:44px;margin:0 auto 14px;opacity:.9}
     <div class="conteudo">
       <div>
         <h1>Peças em impressão 3D com a identidade da sua marca</h1>
-        <p class="sub">Chaveiros, mimos e brindes personalizados para clínicas de estética e salões. Desenho próprio e produção em Florianópolis.</p>
+        <p class="sub">Chaveiros, mimos e brindes personalizados para a sua empresa, do primeiro desenho à peça pronta. Produção em Florianópolis.</p>
         <div class="acoes">
           <a class="botao cheio" data-whatsapp href="#contato">Pedir orçamento no WhatsApp</a>
           <a class="botao contorno" href="#pecas">Ver as peças</a>
         </div>
       </div>
       <div class="marca"><img src="img/logo-radix-atelie.webp" width="1000" height="1107" alt="Logo Radix Ateliê: uma árvore cujos galhos saem de um bico de impressora 3D, que imprime o nome Radix com raízes."></div>
+      <ul class="fatos" aria-label="Em resumo">
+        <li><strong>A partir de 1 peça</strong>Sem molde, sem lote mínimo de fábrica</li>
+        <li><strong>Simulação em 3D</strong>Você aprova o desenho antes de imprimir</li>
+        <li><strong>16 cores</strong>Sólidas, translúcidas e especiais</li>
+        <li><strong>Até 25 cm</strong>Do chaveiro à peça de decoração</li>
+      </ul>
     </div>
   </section>
 
   <section class="trecho secao" id="pecas">
-    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="118" r="5"/></svg></div>
+    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
     <div class="conteudo">
       <h2>O que fazemos</h2>
       <p>Cada peça é desenhada para o seu pedido. Você vê a simulação em 3D antes de qualquer impressão.</p>
@@ -151,7 +203,7 @@ footer img{width:44px;margin:0 auto 14px;opacity:.9}
         <div class="foto"><img src="img/mandala.webp" width="900" height="956" loading="lazy" alt="Chaveiro em forma de mandala laranja com argola de metal."></div>
         <div>
           <h3>Chaveiros personalizados</h3>
-          <p>Com o logo da clínica, o nome do salão ou um número para cada armário. Leves e resistentes para o uso diário.</p>
+          <p>Com o seu logo, o nome da empresa ou um número para cada armário. Leves e resistentes para o uso diário.</p>
           <p class="detalhe">Dá para combinar duas cores na mesma peça, como o número em preto no verso de um chaveiro laranja.</p>
         </div>
       </article>
@@ -160,7 +212,7 @@ footer img{width:44px;margin:0 auto 14px;opacity:.9}
         <div class="foto"><img src="img/boca.webp" width="900" height="731" loading="lazy" alt="Peça vermelha em forma de lábios."></div>
         <div>
           <h3>Mimos para clientes</h3>
-          <p>Lembranças para entregar no atendimento ou em datas especiais. Podem virar ímã de geladeira, abridor de latinha ou levar uma etiqueta NFC: a cliente encosta o celular e abre o seu Instagram ou WhatsApp.</p>
+          <p>Lembranças para entregar aos seus clientes, em eventos ou em datas especiais. Podem virar ímã de geladeira, abridor de latinha ou levar uma etiqueta NFC: o cliente encosta o celular e abre o seu Instagram ou WhatsApp.</p>
         </div>
       </article>
 
@@ -174,8 +226,37 @@ footer img{width:44px;margin:0 auto 14px;opacity:.9}
     </div>
   </section>
 
+  <section class="trecho secao" id="para-quem">
+    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
+    <div class="conteudo">
+      <h2>Para quem</h2>
+      <p>Qualquer negócio que queira ser lembrado por um detalhe bem feito. Alguns exemplos do que dá para fazer:</p>
+      <dl class="usos">
+        <div><dt>Clínicas, salões e consultórios</dt><dd>Mimos de atendimento, chaveiros de armário numerados, suportes com a marca no balcão.</dd></div>
+        <div><dt>Empresas e escritórios</dt><dd>Brindes com o logo para clientes e kits de boas-vindas para a equipe.</dd></div>
+        <div><dt>Eventos e celebrações</dt><dd>Lembranças personalizadas com nome ou data, marcadores de mesa, peças para decoração.</dd></div>
+        <div><dt>Lojas e marcas</dt><dd>Brindes na compra, chaveiros da marca, pequenos expositores sob medida.</dd></div>
+        <div><dt>Escolas, academias e clubes</dt><dd>Chaveiros numerados, identificação de armários e lembranças de turma ou de equipe.</dd></div>
+        <div><dt>Para presentear</dt><dd>Uma peça única, desenhada a partir de uma ideia sua.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="trecho secao" id="por-que-3d">
+    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
+    <div class="conteudo">
+      <h2>Por que impressão 3D</h2>
+      <div class="vantagens">
+        <div><h3>Sem molde</h3><p>A peça é construída camada por camada direto do arquivo. Sem custo de molde, um pedido pequeno também fica viável.</p></div>
+        <div><h3>Cada peça pode ser diferente</h3><p>Nome, número ou data em cada unidade, no mesmo lote, sem custo extra de ferramenta.</p></div>
+        <div><h3>Você vê antes</h3><p>Antes de imprimir, você recebe a simulação em 3D. Em pedidos maiores, também uma amostra.</p></div>
+        <div><h3>Material resistente</h3><p>PETG: um plástico firme e durável, que aguenta o dia a dia no chaveiro, na bolsa ou na geladeira.</p></div>
+      </div>
+    </div>
+  </section>
+
   <section class="trecho secao" id="como-funciona">
-    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="118" r="5"/></svg></div>
+    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
     <div class="conteudo">
       <h2>Como funciona</h2>
       <ol class="passos">
@@ -188,9 +269,9 @@ footer img{width:44px;margin:0 auto 14px;opacity:.9}
   </section>
 
   <section class="trecho secao" id="cores">
-    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="118" r="5"/></svg></div>
+    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
     <div class="conteudo">
-      <h2>Cores</h2>
+      <h2>Cores e acabamentos</h2>
       <p>Trabalhamos com PETG, um plástico resistente da mesma família do usado em garrafas de água. São 16 opções, entre sólidas, translúcidas e especiais.</p>
       <div class="amostras" role="list" aria-label="Cores disponíveis">
         <span role="listitem" title="Preto" style="background:#1C1C1E"></span>
@@ -212,14 +293,60 @@ footer img{width:44px;margin:0 auto 14px;opacity:.9}
       </div>
       <a class="botao contorno" href="cores.html">Abrir a cartela de cores</a>
 
+      <h3 class="subtitulo">Acabamentos e extras</h3>
+      <dl class="usos extras">
+        <div><dt>Duas cores na mesma peça</dt><dd>Como um número preto encaixado, nivelado, no verso de uma peça laranja.</dd></div>
+        <div><dt>Etiqueta NFC</dt><dd>Embutida na peça. Com um toque do celular, abre o seu Instagram, WhatsApp ou site.</dd></div>
+        <div><dt>Ímã</dt><dd>Para a peça virar ímã de geladeira ou de painel.</dd></div>
+        <div><dt>Argola e corrente</dt><dd>Para chaveiros e pingentes.</dd></div>
+        <div><dt>Abridor de latinha</dt><dd>Embutido no próprio desenho, sem peça de metal.</dd></div>
+      </dl>
+
       <div class="pedido">
         <p>O preço por peça diminui conforme a quantidade do pedido. Mande quantas peças você precisa e a data em que quer receber, que respondemos com o orçamento.</p>
       </div>
     </div>
   </section>
 
+  <section class="trecho secao" id="a-marca">
+    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
+    <div class="conteudo">
+      <h2>A marca</h2>
+      <div class="historia">
+        <div class="texto">
+          <h3>O nome</h3>
+          <p>Radix significa raiz, em latim: de onde tudo nasce e o que sustenta. Ateliê porque o trabalho é autoral, feito sob medida, peça a peça.</p>
+          <h3>O símbolo</h3>
+          <p>O desenho une a árvore da vida à anatomia feminina, que gera a vida. As duas têm a mesma forma ramificada: no colo do útero existe uma estrutura que a medicina chama de <i>arbor vitae</i>, "árvore da vida" em latim.</p>
+          <h3>A história que a logo conta</h3>
+          <p>A copa cresce, as fibras se unem e passam pelo bico da impressora 3D. O fio que sai do bico imprime o nome, e o nome cria raízes. É o caminho de cada peça: uma ideia que ganha forma, vira matéria e fica.</p>
+        </div>
+        <figure class="simbolo"><img src="img/simbolo.webp" width="900" height="654" loading="lazy" alt="Símbolo da Radix: galhos com folhas que se unem e descem até um bico de impressora 3D, de onde sai um fio."></figure>
+      </div>
+      <div class="quem">
+        <h3>Quem faz</h3>
+        <p>A Radix Ateliê é um ateliê pequeno em Florianópolis. Cada peça é desenhada aqui, impressa aqui e conferida à mão antes de sair. [ESPAÇO PARA 2 OU 3 LINHAS SOBRE VOCÊ: QUEM É, POR QUE COMEÇOU]</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="trecho secao" id="duvidas">
+    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
+    <div class="conteudo">
+      <h2>Dúvidas frequentes</h2>
+      <div class="faq">
+        <details><summary>Preciso ter o desenho pronto?</summary><p>Não. Pode mandar o seu logo, uma foto ou só a ideia. A gente desenha a peça e envia a simulação em 3D para você aprovar.</p></details>
+        <details><summary>Dá para ver a peça antes de fazer o pedido todo?</summary><p>Sim. Você aprova a simulação em 3D antes de qualquer impressão, e em pedidos maiores imprimimos uma amostra.</p></details>
+        <details><summary>Qual a quantidade mínima?</summary><p>A partir de 1 peça. O preço por unidade cai conforme a quantidade, por isso vale contar quantas você precisa no pedido de orçamento.</p></details>
+        <details><summary>Qual o prazo?</summary><p>Depende do tamanho do pedido e do desenho. O prazo é combinado no orçamento, antes de você fechar.</p></details>
+        <details><summary>Cada peça pode ter um nome ou número diferente?</summary><p>Pode. Na impressão 3D cada unidade pode ser diferente, no mesmo lote.</p></details>
+        <details><summary>Vocês entregam fora de Florianópolis?</summary><p>[A DEFINIR: RETIRADA, ENTREGA LOCAL E ENVIO PELOS CORREIOS]</p></details>
+      </div>
+    </div>
+  </section>
+
   <section class="trecho contato" id="contato">
-    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="118" r="5"/></svg></div>
+    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
     <div class="conteudo">
       <h2>Vamos criar a sua peça</h2>
       <p>Conte o que você precisa. Respondemos com ideias, cores e orçamento.</p>
