@@ -20,7 +20,7 @@ CORES = [("Preto", "#1C1C1E"), ("Cinza Grafite", "#3C3F44"), ("Cinza Claro", "#A
          ("Fibra de Carbono", "#2C2C2E")]
 
 ap = argparse.ArgumentParser()
-ap.add_argument('--stl', required=True)
+ap.add_argument('--stl', required=True, nargs='+', help='um STL, ou um STL por parte (mesma origem), de baixo pra cima na lista de --partes')
 ap.add_argument('--peca', required=True)
 ap.add_argument('--corte', type=float, nargs='*', default=[])
 ap.add_argument('--partes', nargs='+', required=True, help='"Nome:Cor padrão", de baixo pra cima')
@@ -34,17 +34,24 @@ ap.add_argument('--vista', default='0.5,-0.35', help='giro inicial: y,x em radia
 ap.add_argument('--rotulos', default='Frente,Lado,Verso')
 ap.add_argument('--volume', action='store_true', help='peça de volume (bicho, boneco): mostra em pé, com o topo pra cima')
 a = ap.parse_args()
-assert len(a.partes) == len(a.corte) + 1, 'precisa de uma parte a mais que o número de cortes'
+assert len(a.stl) > 1 or len(a.partes) == len(a.corte) + 1, 'precisa de uma parte a mais que o número de cortes'
 
-m = trimesh.load(a.stl, force='mesh')
+multi = len(a.stl) > 1
+assert not (multi and a.corte), 'use --corte ou vários STLs, não os dois'
+if multi: assert len(a.stl) == len(a.partes), 'um STL por parte'
+malhas = [trimesh.load(f, force='mesh') for f in a.stl]
+m = trimesh.util.concatenate(malhas)
 if a.decimar and len(m.faces) > a.decimar:
     import fast_simplification as fs
     v2, f2 = fs.simplify(m.vertices.astype('float32'), m.faces, target_reduction=1 - a.decimar / len(m.faces))
     m = trimesh.Trimesh(v2, f2, process=True)
-m.vertices -= [(m.bounds[0][0] + m.bounds[1][0]) / 2, (m.bounds[0][1] + m.bounds[1][1]) / 2, m.bounds[0][2]]
+desloc = [(m.bounds[0][0] + m.bounds[1][0]) / 2, (m.bounds[0][1] + m.bounds[1][1]) / 2, m.bounds[0][2]]
+m.vertices -= desloc
+for x in malhas: x.vertices -= desloc
 ext = m.extents
 
 pedacos, resto = [], m
+if multi: pedacos, resto = malhas[:-1], malhas[-1]
 for z in a.corte:
     pedacos.append(trimesh.intersections.slice_mesh_plane(resto, [0, 0, -1], [0, 0, z]))
     resto = trimesh.intersections.slice_mesh_plane(resto, [0, 0, 1], [0, 0, z])
