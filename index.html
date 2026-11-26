@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Radix Ateliê | Impressão 3D personalizada em Florianópolis</title>
+<title>Radix Ateliê | Impressão 3D personalizada</title>
 <meta name="description" content="Chaveiros, mimos, brindes e peças personalizadas em impressão 3D para empresas e marcas. Desenho próprio, produção em Florianópolis.">
 <meta property="og:title" content="Radix Ateliê | Impressão 3D personalizada">
-<meta property="og:description" content="Chaveiros, mimos, brindes e peças personalizadas em impressão 3D para empresas e marcas.">
+<meta property="og:description" content="Chaveiros, mimos, brindes e peças personalizadas em impressão 3D para empresas e marcas. Desenho próprio, produção em Florianópolis.">
 <meta property="og:image" content="img/compartilhar.jpg">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#000000">
@@ -15,388 +15,121 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-/* Cores da marca (manual de identidade visual) */
-:root{
-  --preto:#000000; --ouro:#D3AE41; --ouro-luz:#F3DA8A; --ouro-fundo:#6F5312; --marfim:#F7F3EA;
-  --texto:rgba(247,243,234,.92); --texto-fraco:rgba(247,243,234,.74);
-  --serif:'Cinzel',Georgia,serif; --sans:'Montserrat',system-ui,sans-serif;
-  --fio:56px;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--preto);color:var(--texto);font:400 1.0625rem/1.7 var(--sans);-webkit-font-smoothing:antialiased}
-img{display:block;max-width:100%;height:auto}
-a{color:inherit}
-:focus-visible{outline:2px solid var(--ouro-luz);outline-offset:4px;border-radius:2px}
-
-/* Estrutura: o fio de filamento corre pela margem esquerda e liga as seções, como o fio que sai do bico na logo */
-.trecho{display:grid;grid-template-columns:var(--fio) 1fr;max-width:1180px;margin:0 auto;padding:0 24px 0 8px}
-.trecho>.fio{position:relative}
-.trecho>.fio svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.fio path{fill:none;stroke:var(--ouro);stroke-width:1.6;stroke-linecap:round;opacity:.75}
-.fio circle{fill:var(--preto);stroke:var(--ouro);stroke-width:1.6}
-.conteudo{padding:0 0 0 clamp(8px,3vw,40px)}
-
-h1,h2,h3{font-family:var(--serif);font-weight:500;color:var(--marfim);letter-spacing:.02em;line-height:1.15}
-h2{font-size:clamp(1.9rem,3.4vw,2.6rem);color:var(--ouro);margin-bottom:.6em}
-h3{font-size:1.3rem;margin-bottom:.4em}
-p{max-width:34em}
-p+p{margin-top:1em}
-
-/* Topo */
-.topo{display:flex;justify-content:space-between;align-items:center;max-width:1180px;margin:0 auto;padding:22px 24px 0 calc(var(--fio) + 8px + clamp(8px,3vw,40px))}
-.topo .nome{font-family:var(--serif);color:var(--ouro);text-decoration:none;font-size:1.05rem;letter-spacing:.12em}
-.topo nav{display:flex;gap:28px;font-size:.92rem}
-.topo nav a{text-decoration:none;color:var(--texto-fraco)}
-.topo nav a:hover{color:var(--ouro-luz)}
-
-/* Abertura */
-.abertura .conteudo{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:clamp(24px,4vw,56px);padding-top:40px;padding-bottom:40px}
-.abertura h1{font-size:clamp(2.1rem,3.9vw,3.2rem);margin-bottom:.55em}
-.abertura .sub{font-size:1.15rem;color:var(--texto);max-width:28em}
-.acoes{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
-.botao{display:inline-block;font:500 .98rem/1 var(--sans);padding:17px 26px;border-radius:999px;text-decoration:none;transition:background .2s,color .2s,border-color .2s}
-.botao.cheio{background:var(--ouro);color:var(--preto)}
-.botao.cheio:hover{background:var(--ouro-luz)}
-.botao.contorno{border:1px solid var(--ouro-fundo);color:var(--marfim)}
-.botao.contorno:hover{border-color:var(--ouro)}
-.abertura .marca img{width:100%;max-width:470px;margin-left:auto}
-
-/* O que fazemos: peças em fileira alternada, foto e texto */
-.secao .conteudo{padding-top:80px;padding-bottom:8px}
-.peca{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:center;margin-top:32px}
-.peca:nth-of-type(even) .foto{order:2}
-.peca .foto img{width:100%;max-width:360px;margin:0 auto}
-.peca .detalhe{font-size:.95rem;color:var(--texto-fraco);margin-top:1em}
-
-/* Como funciona: é uma sequência, por isso numerada */
-.passos{list-style:none;margin-top:40px;display:grid;gap:34px;counter-reset:passo}
-.passos li{display:grid;grid-template-columns:64px 1fr;gap:18px;counter-increment:passo}
-.passos li::before{content:counter(passo);font-family:var(--serif);font-size:2.4rem;color:var(--ouro);line-height:1}
-.passos h3{font-size:1.15rem}
-
-/* Cores */
-.amostras{display:flex;flex-wrap:wrap;gap:14px;margin:34px 0 30px;max-width:640px}
-.amostras span{width:46px;height:46px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(247,243,234,.18),inset -6px -8px 14px rgba(0,0,0,.35),inset 5px 6px 10px rgba(255,255,255,.18)}
-
-/* Pedido */
-.pedido{border-top:1px solid var(--ouro-fundo);border-bottom:1px solid var(--ouro-fundo);padding:44px 0;margin-top:8px}
-.pedido p{font-size:1.15rem}
-
-/* Contato e rodapé */
-.contato .conteudo{padding-top:80px;padding-bottom:90px}
-.contato dl{display:grid;grid-template-columns:auto 1fr;gap:10px 28px;margin-top:28px;font-size:1rem}
-.contato dt{color:var(--texto-fraco)}
-.contato dd a{text-decoration:none;color:var(--marfim);border-bottom:1px solid var(--ouro-fundo)}
-.contato dd a:hover{border-color:var(--ouro)}
-footer{text-align:center;font-size:.85rem;color:var(--texto-fraco);padding:0 24px 40px}
-footer img{width:44px;margin:0 auto 14px;opacity:.9}
-
-
-/* Resumo logo abaixo da abertura */
-.fatos{grid-column:1/-1;list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--ouro-fundo);margin-top:8px}
-.fatos li{padding:22px 20px 4px 0;font-size:.92rem;color:var(--texto-fraco)}
-.fatos li+li{padding-left:20px;border-left:1px solid var(--ouro-fundo)}
-.fatos strong{display:block;font-family:var(--serif);font-weight:500;font-size:1.25rem;color:var(--ouro);margin-bottom:4px}
-
-/* Listas de usos e extras: termo em dourado, descrição embaixo, em duas colunas */
-.usos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 48px;margin-top:34px}
-.usos dt{font-family:var(--serif);font-size:1.08rem;color:var(--marfim);margin-bottom:4px}
-.usos dd{color:var(--texto-fraco);font-size:.98rem}
-.extras{margin-top:20px}
-.subtitulo{margin-top:56px;color:var(--ouro)}
-
-/* Vantagens da impressão 3D */
-.vantagens{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 48px;margin-top:30px}
-.vantagens>div{border-left:1px solid var(--ouro-fundo);padding-left:22px}
-.vantagens p{color:var(--texto-fraco);font-size:.98rem}
-
-/* A marca */
-.historia{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,5vw,64px);align-items:center;margin-top:20px}
-.historia h3{margin-top:26px;color:var(--ouro);font-size:1.12rem}
-.historia h3:first-child{margin-top:0}
-.simbolo img{width:100%;max-width:420px;margin:0 auto}
-.quem{margin-top:44px;padding-top:30px;border-top:1px solid var(--ouro-fundo)}
-.quem h3{color:var(--ouro);font-size:1.12rem}
-
-/* Dúvidas */
-.faq{margin-top:26px;max-width:760px}
-.faq details{border-bottom:1px solid var(--ouro-fundo)}
-.faq summary{cursor:pointer;list-style:none;padding:18px 40px 18px 0;position:relative;color:var(--marfim);font-weight:500}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";position:absolute;right:6px;top:12px;font-family:var(--serif);font-size:1.6rem;color:var(--ouro);transition:transform .2s}
-.faq details[open] summary::after{transform:rotate(45deg)}
-.faq details p{padding:0 0 20px;color:var(--texto-fraco)}
-
-@media (max-width:820px){
-  .fatos{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .fatos li:nth-child(3){padding-left:0;border-left:0}
-  .usos,.vantagens,.historia{grid-template-columns:1fr}
-  .simbolo{order:-1}
-  .simbolo img{max-width:280px}
-}
-
-/* Um único movimento: o fio da abertura se desenha ao carregar a página */
-@media (prefers-reduced-motion:no-preference){
-  .abertura .fio path{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:desenha 2.4s .3s cubic-bezier(.6,0,.3,1) forwards}
-  @keyframes desenha{to{stroke-dashoffset:0}}
-}
-
-@media (max-width:820px){
-  :root{--fio:30px}
-  .topo nav{display:none}
-  .abertura .conteudo{grid-template-columns:1fr;min-height:auto;padding-top:28px}
-  .abertura .marca{order:-1}
-  .abertura .marca img{max-width:320px;margin:0 auto}
-  .peca{grid-template-columns:1fr;margin-top:44px}
-  .peca:nth-of-type(even) .foto{order:0}
-  .secao .conteudo,.contato .conteudo{padding-top:72px}
-  .passos li{grid-template-columns:44px 1fr}
-  .passos li::before{font-size:1.9rem}
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header class="topo">
-  <a class="nome" href="#">RADIX ATELIÊ</a>
-  <nav aria-label="Seções">
-    <a href="#pecas">Peças</a>
-    <a href="#para-quem">Para quem</a>
-    <a href="#como-funciona">Como funciona</a>
-    <a href="#a-marca">A marca</a>
-    <a href="#duvidas">Dúvidas</a>
+  <a class="nome" href="index.html">RADIX ATELIÊ</a>
+  <button class="menu" type="button" aria-expanded="false" aria-controls="navegacao">Menu</button>
+  <nav id="navegacao" aria-label="Páginas">
+    <a href="index.html" aria-current="page">Início</a>
+    <a href="pecas.html">Peças</a>
+    <a href="como-funciona.html">Como funciona</a>
+    <a href="a-marca.html">A marca</a>
     <a href="#contato">Contato</a>
   </nav>
 </header>
 
 <main>
-  <section class="trecho abertura">
-    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/></svg></div>
-    <div class="conteudo">
+<section class="trecho abertura">
+  <div class="fio" aria-hidden="true"><svg><path d=""/></svg></div>
+  <div class="conteudo">
+    <div>
+      <h1>Peças em impressão 3D com a identidade da sua marca</h1>
+      <p class="sub">Chaveiros, mimos e brindes personalizados para a sua empresa, do primeiro desenho à peça pronta.<br>Produção em Florianópolis.</p>
+      <div class="acoes">
+        <a class="botao cheio" data-whatsapp href="#contato">Pedir orçamento no WhatsApp</a>
+        <a class="botao contorno" href="pecas.html">Ver as peças</a>
+      </div>
+    </div>
+    <div class="marca"><img src="img/logo-radix-atelie.webp" width="1000" height="1107" alt="Logo Radix Ateliê: uma árvore cujos galhos saem de um bico de impressora 3D, que imprime o nome Radix com raízes."></div>
+    <ul class="fatos" aria-label="Em resumo">
+      <li><strong>A partir de 1 peça</strong>Sem molde, sem lote mínimo de fábrica</li>
+      <li><strong>Simulação em 3D</strong>Você aprova o desenho antes de imprimir</li>
+      <li><strong>16 cores</strong>Sólidas, translúcidas e especiais</li>
+      <li><strong>Até 25 cm</strong>Do chaveiro à peça de decoração</li>
+    </ul>
+  </div>
+</section>
+<section class="trecho secao" id="gire">
+  <div class="fio" aria-hidden="true"><svg><path d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
+  <div class="conteudo">
+    <h2>Gire a peça</h2>
+    <p>Este é um chaveiro de mandala com o número encaixado no verso, em outra cor. Arraste para girar e troque a cor para ver como fica.</p>
+    <div class="vitrine">
+      <div class="palco" id="palco" aria-label="Chaveiro em 3D. Arraste para girar.">
+        <img src="img/mandala.webp" width="900" height="956" alt="Chaveiro em forma de mandala laranja com argola de metal.">
+        <span class="dica">Arraste para girar</span>
+      </div>
       <div>
-        <h1>Peças em impressão 3D com a identidade da sua marca</h1>
-        <p class="sub">Chaveiros, mimos e brindes personalizados para a sua empresa, do primeiro desenho à peça pronta. Produção em Florianópolis.</p>
-        <div class="acoes">
-          <a class="botao cheio" data-whatsapp href="#contato">Pedir orçamento no WhatsApp</a>
-          <a class="botao contorno" href="#pecas">Ver as peças</a>
+        <h3>Chaveiro de armário</h3>
+        <p>Mandala de 4 cm vazada, com o número preto nivelado no verso. Cada unidade sai com um número diferente, no mesmo lote.</p>
+        <div class="escolha" role="group" aria-label="Cor do chaveiro">
+          <button type="button" title="Preto" data-cor="#1C1C1E" style="background:#1C1C1E" aria-pressed="false"><span class="sr">Preto</span></button>
+          <button type="button" title="Cinza Grafite" data-cor="#3C3F44" style="background:#3C3F44" aria-pressed="false"><span class="sr">Cinza Grafite</span></button>
+          <button type="button" title="Cinza Claro" data-cor="#A8ACB0" style="background:#A8ACB0" aria-pressed="false"><span class="sr">Cinza Claro</span></button>
+          <button type="button" title="Branco Dental" data-cor="#ECE7DC" style="background:#ECE7DC" aria-pressed="false"><span class="sr">Branco Dental</span></button>
+          <button type="button" title="Marrom" data-cor="#5E3B25" style="background:#5E3B25" aria-pressed="false"><span class="sr">Marrom</span></button>
+          <button type="button" title="Vermelho" data-cor="#C3161F" style="background:#C3161F" aria-pressed="false"><span class="sr">Vermelho</span></button>
+          <button type="button" title="Laranja" data-cor="#EF6A1C" style="background:#EF6A1C" aria-pressed="true"><span class="sr">Laranja</span></button>
+          <button type="button" title="Amarelo" data-cor="#F2C300" style="background:#F2C300" aria-pressed="false"><span class="sr">Amarelo</span></button>
+          <button type="button" title="Azul" data-cor="#1F5BC4" style="background:#1F5BC4" aria-pressed="false"><span class="sr">Azul</span></button>
+          <button type="button" title="Verde" data-cor="#1F8A40" style="background:#1F8A40" aria-pressed="false"><span class="sr">Verde</span></button>
+          <button type="button" title="Azul Marinho Translúcido" data-cor="#1A2D69" style="background:#1A2D69" aria-pressed="false"><span class="sr">Azul Marinho Translúcido</span></button>
+          <button type="button" title="Verde Neon Translúcido" data-cor="#5FD43A" style="background:#5FD43A" aria-pressed="false"><span class="sr">Verde Neon Translúcido</span></button>
+          <button type="button" title="Laranja Neon Translúcido" data-cor="#FF6B1E" style="background:#FF6B1E" aria-pressed="false"><span class="sr">Laranja Neon Translúcido</span></button>
+          <button type="button" title="Branco Blackout" data-cor="#F6F6F3" style="background:#F6F6F3" aria-pressed="false"><span class="sr">Branco Blackout</span></button>
+          <button type="button" title="Fibra de Carbono" data-cor="#2C2C2E" style="background:#2C2C2E" aria-pressed="false"><span class="sr">Fibra de Carbono</span></button>
         </div>
-      </div>
-      <div class="marca"><img src="img/logo-radix-atelie.webp" width="1000" height="1107" alt="Logo Radix Ateliê: uma árvore cujos galhos saem de um bico de impressora 3D, que imprime o nome Radix com raízes."></div>
-      <ul class="fatos" aria-label="Em resumo">
-        <li><strong>A partir de 1 peça</strong>Sem molde, sem lote mínimo de fábrica</li>
-        <li><strong>Simulação em 3D</strong>Você aprova o desenho antes de imprimir</li>
-        <li><strong>16 cores</strong>Sólidas, translúcidas e especiais</li>
-        <li><strong>Até 25 cm</strong>Do chaveiro à peça de decoração</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="trecho secao" id="pecas">
-    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
-    <div class="conteudo">
-      <h2>O que fazemos</h2>
-      <p>Cada peça é desenhada para o seu pedido. Você vê a simulação em 3D antes de qualquer impressão.</p>
-
-      <article class="peca">
-        <div class="foto"><img src="img/mandala.webp" width="900" height="956" loading="lazy" alt="Chaveiro em forma de mandala laranja com argola de metal."></div>
-        <div>
-          <h3>Chaveiros personalizados</h3>
-          <p>Com o seu logo, o nome da empresa ou um número para cada armário. Leves e resistentes para o uso diário.</p>
-          <p class="detalhe">Dá para combinar duas cores na mesma peça, como o número em preto no verso de um chaveiro laranja.</p>
-        </div>
-      </article>
-
-      <article class="peca">
-        <div class="foto"><img src="img/boca.webp" width="900" height="731" loading="lazy" alt="Peça vermelha em forma de lábios."></div>
-        <div>
-          <h3>Mimos para clientes</h3>
-          <p>Lembranças para entregar aos seus clientes, em eventos ou em datas especiais. Podem virar ímã de geladeira, abridor de latinha ou levar uma etiqueta NFC: o cliente encosta o celular e abre o seu Instagram ou WhatsApp.</p>
-        </div>
-      </article>
-
-      <article class="peca">
-        <div class="foto"><img src="img/marcador.webp" width="900" height="956" loading="lazy" alt="Marcador de livro em forma de dragão cinza com asas abertas."></div>
-        <div>
-          <h3>Peças sob medida</h3>
-          <p>Marcadores de livro, enfeites, suportes e o que mais você imaginar, em peças de até 25 cm. Se você tem uma ideia, a gente desenha.</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="trecho secao" id="para-quem">
-    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
-    <div class="conteudo">
-      <h2>Para quem</h2>
-      <p>Qualquer negócio que queira ser lembrado por um detalhe bem feito. Alguns exemplos do que dá para fazer:</p>
-      <dl class="usos">
-        <div><dt>Clínicas, salões e consultórios</dt><dd>Mimos de atendimento, chaveiros de armário numerados, suportes com a marca no balcão.</dd></div>
-        <div><dt>Empresas e escritórios</dt><dd>Brindes com o logo para clientes e kits de boas-vindas para a equipe.</dd></div>
-        <div><dt>Eventos e celebrações</dt><dd>Lembranças personalizadas com nome ou data, marcadores de mesa, peças para decoração.</dd></div>
-        <div><dt>Lojas e marcas</dt><dd>Brindes na compra, chaveiros da marca, pequenos expositores sob medida.</dd></div>
-        <div><dt>Escolas, academias e clubes</dt><dd>Chaveiros numerados, identificação de armários e lembranças de turma ou de equipe.</dd></div>
-        <div><dt>Para presentear</dt><dd>Uma peça única, desenhada a partir de uma ideia sua.</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <section class="trecho secao" id="por-que-3d">
-    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
-    <div class="conteudo">
-      <h2>Por que impressão 3D</h2>
-      <div class="vantagens">
-        <div><h3>Sem molde</h3><p>A peça é construída camada por camada direto do arquivo. Sem custo de molde, um pedido pequeno também fica viável.</p></div>
-        <div><h3>Cada peça pode ser diferente</h3><p>Nome, número ou data em cada unidade, no mesmo lote, sem custo extra de ferramenta.</p></div>
-        <div><h3>Você vê antes</h3><p>Antes de imprimir, você recebe a simulação em 3D. Em pedidos maiores, também uma amostra.</p></div>
-        <div><h3>Material resistente</h3><p>PETG: um plástico firme e durável, que aguenta o dia a dia no chaveiro, na bolsa ou na geladeira.</p></div>
+        <p class="nome-cor">Cor: Laranja</p>
+        <div class="botoes-palco" style="margin-top:18px"><button class="botao contorno pequeno" type="button" id="ver-verso">Ver o verso</button></div>
       </div>
     </div>
-  </section>
-
-  <section class="trecho secao" id="como-funciona">
-    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
-    <div class="conteudo">
-      <h2>Como funciona</h2>
-      <ol class="passos">
-        <li><div><h3>Você conta a ideia</h3><p>Pelo WhatsApp, com o seu logo, uma foto ou uma referência que você goste.</p></div></li>
-        <li><div><h3>Desenhamos a peça</h3><p>Você recebe a simulação em 3D, com medidas e cores, e aprova antes de imprimir.</p></div></li>
-        <li><div><h3>Amostra</h3><p>Em pedidos maiores, imprimimos uma peça de teste para você ver e pegar na mão.</p></div></li>
-        <li><div><h3>Produção e entrega</h3><p>Com o desenho aprovado, produzimos o lote. Prazo e forma de entrega combinados no orçamento.</p></div></li>
-      </ol>
+  </div>
+</section>
+<section class="trecho secao">
+  <div class="fio" aria-hidden="true"><svg><path d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
+  <div class="conteudo">
+    <h2>O que fazemos</h2>
+    <div class="destaques">
+      <a href="pecas.html#chaveiros"><img src="img/mandala.webp" width="900" height="956" loading="lazy" alt=""><h3>Chaveiros personalizados</h3><p>Com o seu logo, o nome da empresa ou um número para cada armário.</p></a>
+      <a href="pecas.html#mimos"><img src="img/boca.webp" width="900" height="731" loading="lazy" alt=""><h3>Mimos para clientes</h3><p>Ímã de geladeira, abridor de latinha ou etiqueta NFC que abre o seu Instagram.</p></a>
+      <a href="pecas.html#sob-medida"><img src="img/marcador.webp" width="900" height="956" loading="lazy" alt=""><h3>Peças sob medida</h3><p>Se você tem uma ideia de até 25 cm, a gente desenha.</p></a>
     </div>
-  </section>
-
-  <section class="trecho secao" id="cores">
-    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
-    <div class="conteudo">
-      <h2>Cores e acabamentos</h2>
-      <p>Trabalhamos com PETG, um plástico resistente da mesma família do usado em garrafas de água. São 16 opções, entre sólidas, translúcidas e especiais.</p>
-      <div class="amostras" role="list" aria-label="Cores disponíveis">
-        <span role="listitem" title="Preto" style="background:#1C1C1E"></span>
-        <span role="listitem" title="Cinza Grafite" style="background:#3C3F44"></span>
-        <span role="listitem" title="Cinza Claro" style="background:#A8ACB0"></span>
-        <span role="listitem" title="Branco Dental" style="background:#ECE7DC"></span>
-        <span role="listitem" title="Marrom" style="background:#5E3B25"></span>
-        <span role="listitem" title="Vermelho" style="background:#C3161F"></span>
-        <span role="listitem" title="Laranja" style="background:#EF6A1C"></span>
-        <span role="listitem" title="Amarelo" style="background:#F2C300"></span>
-        <span role="listitem" title="Azul" style="background:#1F5BC4"></span>
-        <span role="listitem" title="Verde" style="background:#1F8A40"></span>
-        <span role="listitem" title="Natural Translúcido" style="background:#E6ECEE"></span>
-        <span role="listitem" title="Azul Marinho Translúcido" style="background:#1A2D69"></span>
-        <span role="listitem" title="Verde Neon Translúcido" style="background:#5FD43A"></span>
-        <span role="listitem" title="Laranja Neon Translúcido" style="background:#FF6B1E"></span>
-        <span role="listitem" title="Branco Blackout" style="background:#F6F6F3"></span>
-        <span role="listitem" title="Fibra de Carbono" style="background:#2C2C2E"></span>
-      </div>
-      <a class="botao contorno" href="cores.html">Abrir a cartela de cores</a>
-
-      <h3 class="subtitulo">Acabamentos e extras</h3>
-      <dl class="usos extras">
-        <div><dt>Duas cores na mesma peça</dt><dd>Como um número preto encaixado, nivelado, no verso de uma peça laranja.</dd></div>
-        <div><dt>Etiqueta NFC</dt><dd>Embutida na peça. Com um toque do celular, abre o seu Instagram, WhatsApp ou site.</dd></div>
-        <div><dt>Ímã</dt><dd>Para a peça virar ímã de geladeira ou de painel.</dd></div>
-        <div><dt>Argola e corrente</dt><dd>Para chaveiros e pingentes.</dd></div>
-        <div><dt>Abridor de latinha</dt><dd>Embutido no próprio desenho, sem peça de metal.</dd></div>
-      </dl>
-
-      <div class="pedido">
-        <p>O preço por peça diminui conforme a quantidade do pedido. Mande quantas peças você precisa e a data em que quer receber, que respondemos com o orçamento.</p>
-      </div>
+    <div class="acoes"><a class="botao contorno" href="pecas.html">Ver peças, cores e acabamentos</a></div>
+  </div>
+</section>
+<section class="trecho secao">
+  <div class="fio" aria-hidden="true"><svg><path d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
+  <div class="conteudo">
+    <div class="manifesto">
+      <blockquote>Abrace o seu cliente.</blockquote>
+      <p>Não é só um brinde. É um jeito de mostrar ao seu cliente que você se importa com ele, num detalhe que ele leva para casa.</p>
+      <a href="a-marca.html">Conheça a história da Radix</a>
     </div>
-  </section>
-
-  <section class="trecho secao" id="a-marca">
-    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
-    <div class="conteudo">
-      <h2>A marca</h2>
-      <div class="historia">
-        <div class="texto">
-          <h3>O nome</h3>
-          <p>Radix significa raiz, em latim: de onde tudo nasce e o que sustenta. Ateliê porque o trabalho é autoral, feito sob medida, peça a peça.</p>
-          <h3>O símbolo</h3>
-          <p>O desenho une a árvore da vida à anatomia feminina, que gera a vida. As duas têm a mesma forma ramificada: no colo do útero existe uma estrutura que a medicina chama de <i>arbor vitae</i>, "árvore da vida" em latim.</p>
-          <h3>A história que a logo conta</h3>
-          <p>A copa cresce, as fibras se unem e passam pelo bico da impressora 3D. O fio que sai do bico imprime o nome, e o nome cria raízes. É o caminho de cada peça: uma ideia que ganha forma, vira matéria e fica.</p>
-        </div>
-        <figure class="simbolo"><img src="img/simbolo.webp" width="900" height="654" loading="lazy" alt="Símbolo da Radix: galhos com folhas que se unem e descem até um bico de impressora 3D, de onde sai um fio."></figure>
-      </div>
-      <div class="quem">
-        <h3>Quem faz</h3>
-        <p>A Radix Ateliê é um ateliê pequeno em Florianópolis. Cada peça é desenhada aqui, impressa aqui e conferida à mão antes de sair. [ESPAÇO PARA 2 OU 3 LINHAS SOBRE VOCÊ: QUEM É, POR QUE COMEÇOU]</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="trecho secao" id="duvidas">
-    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
-    <div class="conteudo">
-      <h2>Dúvidas frequentes</h2>
-      <div class="faq">
-        <details><summary>Preciso ter o desenho pronto?</summary><p>Não. Pode mandar o seu logo, uma foto ou só a ideia. A gente desenha a peça e envia a simulação em 3D para você aprovar.</p></details>
-        <details><summary>Dá para ver a peça antes de fazer o pedido todo?</summary><p>Sim. Você aprova a simulação em 3D antes de qualquer impressão, e em pedidos maiores imprimimos uma amostra.</p></details>
-        <details><summary>Qual a quantidade mínima?</summary><p>A partir de 1 peça. O preço por unidade cai conforme a quantidade, por isso vale contar quantas você precisa no pedido de orçamento.</p></details>
-        <details><summary>Qual o prazo?</summary><p>Depende do tamanho do pedido e do desenho. O prazo é combinado no orçamento, antes de você fechar.</p></details>
-        <details><summary>Cada peça pode ter um nome ou número diferente?</summary><p>Pode. Na impressão 3D cada unidade pode ser diferente, no mesmo lote.</p></details>
-        <details><summary>Vocês entregam fora de Florianópolis?</summary><p>[A DEFINIR: RETIRADA, ENTREGA LOCAL E ENVIO PELOS CORREIOS]</p></details>
-      </div>
-    </div>
-  </section>
-
-  <section class="trecho contato" id="contato">
-    <div class="fio" aria-hidden="true"><svg><path data-fio d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
-    <div class="conteudo">
-      <h2>Vamos criar a sua peça</h2>
-      <p>Conte o que você precisa. Respondemos com ideias, cores e orçamento.</p>
-      <div class="acoes"><a class="botao cheio" data-whatsapp href="#contato">Chamar no WhatsApp</a></div>
-      <dl>
-        <dt>WhatsApp</dt><dd data-whatsapp-texto>[NÚMERO A DEFINIR]</dd>
-        <dt>Instagram</dt><dd><a href="https://www.instagram.com/radix.atelie/" target="_blank" rel="noopener">@radix.atelie</a></dd>
-        <dt>Ateliê</dt><dd>Florianópolis, SC</dd>
-      </dl>
-    </div>
-  </section>
+  </div>
+</section>
+<section class="trecho faixa-contato" id="contato">
+  <div class="fio" aria-hidden="true"><svg><path d=""/><circle cx="50%" cy="102" r="5"/></svg></div>
+  <div class="conteudo">
+    <h2>Vamos criar a sua peça</h2>
+    <p>Conte o que você precisa. Respondemos com ideias, cores e orçamento.</p>
+    <div class="acoes"><a class="botao cheio" data-whatsapp href="#contato">Chamar no WhatsApp</a></div>
+    <dl>
+      <dt>WhatsApp</dt><dd data-whatsapp-texto>[NÚMERO A DEFINIR]</dd>
+      <dt>Instagram</dt><dd><a href="https://www.instagram.com/radix.atelie/" target="_blank" rel="noopener">@radix.atelie</a></dd>
+      <dt>Ateliê</dt><dd>Florianópolis, SC. Enviamos para todo o Brasil.</dd>
+    </dl>
+  </div>
+</section>
 </main>
 
 <footer>
   <img src="img/icone-180.png" width="180" height="180" alt="">
   Radix Ateliê, impressão 3D personalizada
 </footer>
-
-<script>
-// WhatsApp: preencha o número (com 55 e DDD, só dígitos) para ativar os botões.
-const WHATSAPP = '';            // exemplo: '5548999999999'
-const MENSAGEM = 'Olá! Quero um orçamento de peças em impressão 3D.';
-if (WHATSAPP) {
-  const link = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(MENSAGEM);
-  document.querySelectorAll('[data-whatsapp]').forEach(a => { a.href = link; a.target = '_blank'; a.rel = 'noopener'; });
-  const n = WHATSAPP.replace(/^55(\d{2})(\d{4,5})(\d{4})$/, '($1) $2-$3');
-  document.querySelectorAll('[data-whatsapp-texto]').forEach(el => el.textContent = n);
-}
-
-// Fio: uma linha ondulada contínua na margem, recalculada para a altura de cada seção.
-function desenhaFio() {
-  let lado = 1;   // a onda continua de uma seção para a outra
-  document.querySelectorAll('.fio').forEach((col, i) => {
-    const path = col.querySelector('path'); const h = col.offsetHeight; const w = col.offsetWidth;
-    const cx = w / 2, amp = Math.min(w * 0.32, 14);
-    const y0 = i === 0 ? h * 0.08 : 0, n = Math.max(1, Math.round((h - y0) / 260)), passo = (h - y0) / n;
-    let d = `M ${cx} ${y0}`;
-    let y = y0;
-    for (let k = 0; k < n; k++) {
-      const y2 = y + passo;
-      d += ` C ${cx + amp * lado} ${y + (y2 - y) * 0.35}, ${cx + amp * lado} ${y + (y2 - y) * 0.65}, ${cx} ${y2}`;
-      y = y2; lado = -lado;
-    }
-    path.setAttribute('d', d);
-    path.style.setProperty('--len', path.getTotalLength());
-  });
-}
-desenhaFio();
-addEventListener('resize', desenhaFio);
-addEventListener('load', desenhaFio);
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="site.js"></script>
 </body>
 </html>
