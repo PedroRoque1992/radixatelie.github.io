@@ -118,6 +118,7 @@ $('f-peca').textContent = CFG.peca;
 $('f-tamanho').textContent = CFG.tamanho;
 $('f-material').textContent = CFG.material;
 $('f-validade').textContent = CFG.validade.split('-').reverse().join('/');
+if (CFG.rotulos) document.querySelectorAll('[data-vista]').forEach((b, i) => b.textContent = CFG.rotulos[i] || b.textContent);
 if (CFG.obs) { $('f-obs').textContent = CFG.obs; $('f-obs').hidden = false; }
 
 const corHex = Object.fromEntries(CFG.cores);
@@ -141,15 +142,19 @@ fetch('modelo.json').then(r => r.json()).then(dados => {
   const peca = new T.Group(), malhas = [];
   dados.partes.forEach(p => {
     const g = new T.BufferGeometry();
-    g.setAttribute('position', new T.Float32BufferAttribute(p.p, 3));
-    g.computeVertexNormals();
-    const mat = new T.MeshStandardMaterial({ color: linear(corHex[p.cor]), roughness: 0.45, metalness: 0.02, side: T.DoubleSide });
-    const mesh = new T.Mesh(g, mat); peca.add(mesh); malhas.push(mesh);
+    if (p.v) { g.setAttribute('position', new T.Float32BufferAttribute(p.v.map(x => x / 100), 3)); g.setIndex(p.i); }
+    else g.setAttribute('position', new T.Float32BufferAttribute(p.p, 3));
+    const geo = g.index ? g.toNonIndexed() : g;   // faces planas: sem sombras falsas nas dobras
+    geo.computeVertexNormals();
+    const mat = new T.MeshStandardMaterial({ color: linear(corHex[p.cor]), roughness: CFG.volume ? 0.8 : 0.45, metalness: 0.02, side: CFG.volume ? T.FrontSide : T.DoubleSide });
+    const mesh = new T.Mesh(geo, mat); peca.add(mesh); malhas.push(mesh);
   });
   const caixa = new T.Box3().setFromObject(peca), centro = caixa.getCenter(new T.Vector3()), raio = caixa.getSize(new T.Vector3()).length() / 2;
   peca.position.sub(centro);
-  const giro = new T.Group(); giro.add(peca); cena.add(giro);
-  let dist = raio * 3.6; const distMin = raio * 1.6, distMax = raio * 6;
+  const suporte = new T.Group(); suporte.add(peca); if (CFG.volume) suporte.rotation.x = -Math.PI / 2;
+  const giro = new T.Group(); giro.add(suporte); cena.add(giro);
+  if (CFG.volume) contra.color.set(0x8a8070);
+  let dist = raio * (CFG.volume ? 3.4 : 3.6); const distMin = raio * 1.6, distMax = raio * 6;
 
   // painel de cores
   const painel = $('escolhas');
@@ -187,7 +192,7 @@ fetch('modelo.json').then(r => r.json()).then(dados => {
   $('unica').onchange = e => { unica = e.target.checked; if (unica) escolha = escolha.map(() => escolha[topo]); pinta(); };
 
   // girar, aproximar, vistas
-  let alvoY = 0.5, alvoX = -0.35, arrastando = false, px = 0, py = 0, parado = 0;
+  let [alvoY, alvoX] = CFG.vista || [0.5, -0.35]; let arrastando = false, px = 0, py = 0, parado = 0;
   const toques = new Map(); let pinca0 = 0, dist0 = dist;
   palco.addEventListener('pointerdown', e => {
     toques.set(e.pointerId, [e.clientX, e.clientY]); palco.setPointerCapture(e.pointerId);
@@ -207,9 +212,10 @@ fetch('modelo.json').then(r => r.json()).then(dados => {
   palco.addEventListener('wheel', e => { e.preventDefault(); dist = Math.max(distMin, Math.min(distMax, dist * (1 + e.deltaY * 0.001))); parado = 0; }, { passive: false });
   document.querySelectorAll('[data-vista]').forEach(b => b.onclick = () => {
     const volta = 2 * Math.PI, v = b.dataset.vista;
-    const base = v === 'verso' ? Math.PI : v === 'lado' ? Math.PI / 2 : 0;
+    const y0 = (CFG.vista || [0])[0], x0 = (CFG.vista || [0, -0.15])[1];
+    const base = y0 + (v === 'verso' ? Math.PI : v === 'lado' ? Math.PI / 2 : 0);
     alvoY = base + Math.round((alvoY - base) / volta) * volta;
-    alvoX = v === 'lado' ? 0 : -0.15; parado = -400;
+    alvoX = v === 'lado' ? 0 : x0; parado = -400;
   });
 
   function tamanho() {

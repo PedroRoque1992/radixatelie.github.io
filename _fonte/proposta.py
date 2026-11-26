@@ -29,10 +29,18 @@ ap.add_argument('--cliente', default='')
 ap.add_argument('--material', default='PETG')
 ap.add_argument('--obs', default='')
 ap.add_argument('--codigo', default='')
+ap.add_argument('--decimar', type=int, default=0, help='reduz a malha para N triângulos (modelos pesados)')
+ap.add_argument('--vista', default='0.5,-0.35', help='giro inicial: y,x em radianos')
+ap.add_argument('--rotulos', default='Frente,Lado,Verso')
+ap.add_argument('--volume', action='store_true', help='peça de volume (bicho, boneco): mostra em pé, com o topo pra cima')
 a = ap.parse_args()
 assert len(a.partes) == len(a.corte) + 1, 'precisa de uma parte a mais que o número de cortes'
 
 m = trimesh.load(a.stl, force='mesh')
+if a.decimar and len(m.faces) > a.decimar:
+    import fast_simplification as fs
+    v2, f2 = fs.simplify(m.vertices.astype('float32'), m.faces, target_reduction=1 - a.decimar / len(m.faces))
+    m = trimesh.Trimesh(v2, f2, process=True)
 m.vertices -= [(m.bounds[0][0] + m.bounds[1][0]) / 2, (m.bounds[0][1] + m.bounds[1][1]) / 2, m.bounds[0][2]]
 ext = m.extents
 
@@ -47,7 +55,9 @@ partes = []
 for spec, p in zip(a.partes, pedacos):
     nome, cor = spec.split(':')
     assert cor in nomes, f'cor desconhecida: {cor}'
-    partes.append({'nome': nome, 'cor': cor, 'p': [round(float(v), 3) for v in p.triangles.reshape(-1)]})
+    p.merge_vertices()
+    partes.append({'nome': nome, 'cor': cor, 'v': [int(round(v * 100)) for v in p.vertices.reshape(-1)],
+                   'i': [int(i) for i in p.faces.reshape(-1)]})
 
 codigo = a.codigo or ''.join(secrets.choice(string.ascii_lowercase + string.digits) for _ in range(7))
 validade = (datetime.date.today() + datetime.timedelta(days=a.dias)).isoformat()
@@ -59,7 +69,7 @@ with open(os.path.join(pasta, 'modelo.json'), 'w') as f:
 cfg = {
     'codigo': codigo, 'peca': a.peca, 'cliente': a.cliente, 'validade': validade, 'material': a.material, 'obs': a.obs,
     'tamanho': ' × '.join(f'{v:.1f}'.replace('.', ',').replace(',0', '') for v in ext) + ' mm',
-    'cores': CORES,
+    'cores': CORES, 'vista': [float(x) for x in a.vista.split(',')], 'rotulos': a.rotulos.split(','), 'volume': a.volume,
 }
 modelo = open(os.path.join(RAIZ, '_fonte', 'proposta_modelo.html'), encoding='utf-8').read()
 html = modelo.replace('/*CONFIG*/', 'const CFG = ' + json.dumps(cfg, ensure_ascii=False) + ';')
