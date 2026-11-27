@@ -115,7 +115,7 @@ const hoje = new Date(); hoje.setHours(0,0,0,0);
 const fim = new Date(CFG.validade + 'T23:59:59');
 if (hoje > fim) $('expirou').classList.add('on');
 
-if (CFG.cliente) $('titulo').textContent = CFG.cliente + ', essa é a sua peça.';
+if (CFG.cliente) $('titulo').textContent = CFG.cliente + ', este é o seu projeto.';
 $('f-peca').textContent = CFG.peca;
 $('f-tamanho').textContent = CFG.tamanho;
 $('f-material').textContent = CFG.material;
