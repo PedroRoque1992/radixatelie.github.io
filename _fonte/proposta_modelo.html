@@ -25,10 +25,10 @@ h1{font:600 clamp(30px,6vw,46px)/1.1 Cinzel,serif;color:var(--ouro);margin-botto
 .intro{color:var(--cinza);max-width:56ch;margin-bottom:26px}
 .grade{display:grid;gap:28px}
 @media(min-width:860px){.grade{grid-template-columns:1.25fr 1fr;align-items:start}}
-.palco{position:relative;aspect-ratio:1/1;border:1px solid var(--prof);background:radial-gradient(circle at 50% 42%,#1d170b 0,#000 70%);touch-action:none;cursor:grab}
+.palco{position:relative;aspect-ratio:1/1;border:1px solid var(--prof);background:radial-gradient(circle at 50% 40%,#ffffff 0,#ecebe7 78%);touch-action:none;cursor:grab}
 .palco:active{cursor:grabbing}
 .palco canvas{width:100%;height:100%;display:block}
-.dica{position:absolute;left:0;right:0;bottom:12px;text-align:center;font-size:12px;color:var(--cinza);pointer-events:none}
+.dica{position:absolute;left:0;right:0;bottom:12px;text-align:center;font-size:12px;color:#6b6760;pointer-events:none}
 .vistas{display:flex;gap:8px;margin-top:10px}
 button{font:inherit;color:inherit;background:transparent;cursor:pointer}
 .vistas button{flex:1;border:1px solid var(--prof);padding:9px 0;font-size:14px}
@@ -139,7 +139,7 @@ fetch('modelo.json').then(r => r.json()).then(dados => {
   const camera = new T.PerspectiveCamera(30, 1, 1, 3000);
   cena.add(new T.HemisphereLight(0xfff4dd, 0x201a10, 0.85));
   const sol = new T.DirectionalLight(0xffffff, 0.9); sol.position.set(-40, 60, 90); cena.add(sol);
-  const contra = new T.DirectionalLight(0xD3AE41, 0.5); contra.position.set(50, -30, -60); cena.add(contra);
+  const contra = new T.DirectionalLight(0xD3AE41, 0.35); contra.position.set(50, -30, -60); cena.add(contra);
 
   const peca = new T.Group(), malhas = [];
   dados.partes.forEach(p => {
